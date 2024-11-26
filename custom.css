@@ -1,0 +1,30 @@
+/* Fundo */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #EAE4DD; /* Cor do fundo */
+  color: #333;
+}
+
+/* Navbar */
+header {
+  background-color: #243642 !important; /* Navbar */
+  color: white;
+}
+
+/* Caixa de mensagem */
+.welcome-box {
+  background-color: #3A6D8C; /* Cor da caixa */
+}
+
+/* Botões */
+a.btn {
+  background-color: #52734D; /* Cor dos botões */
+  color: white;
+  text-decoration: none;
+  font-size: 1.25rem; /* Aumentar texto dos botões */
+  padding: 15px 30px; /* Ajustar espaçamento interno dos botões */
+}
+
+a.btn:hover {
+  background-color: #3E5C3B; /* Cor no hover */
+}
