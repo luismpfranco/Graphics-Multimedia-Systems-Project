@@ -7,13 +7,22 @@ body {
 
 /* Navbar */
 header {
-  background-color: #243642 !important; /* Navbar */
+  background-color: #243642; /* Navbar */
   color: white;
+}
+
+/* Ajuste da posição do conteúdo principal */
+main {
+  margin-top: 100px; /* Ajusta o conteúdo mais para baixo */
 }
 
 /* Caixa de mensagem */
 .welcome-box {
   background-color: #3A6D8C; /* Cor da caixa */
+  color: white;
+  line-height: 1.5; /* Espaçamento entre linhas */
+  text-align: center;
+  border-radius: 50px; /* Bordas arredondadas */
 }
 
 /* Botões */
@@ -27,4 +36,102 @@ a.btn {
 
 a.btn:hover {
   background-color: #3E5C3B; /* Cor no hover */
+}
+
+
+/* Imagens dos heróis */
+.hero-img {
+  height: 500px; /* Mesma altura para todas as imagens */
+  width: auto; /* Manter proporção */
+  object-fit: cover; /* Garantir preenchimento */
+}
+
+/* Nomes dos heróis */
+.hero-name {
+  color: #3A6D8C; /* Cor do texto inicial */
+  font-size: 1.25rem;
+  margin-top: 10px;
+  text-decoration: none;
+  transition: color 0.3s ease; /* Suaviza a transição */
+}
+
+/* Link geral do herói */
+.hero-link {
+  text-decoration: none; /* Remover sublinhado no link */
+}
+
+.hero-link:hover .hero-name {
+  color: #2E556F; /* Cor ao passar o mouse (hover) */
+}
+
+
+.speech-bubble {
+  background-color: white;
+  border: 2px solid #3A6D8C;
+  border-radius: 15px;
+  padding: 15px;
+  position: relative;
+  max-width: 300px;
+  text-align: left;
+  line-height: 1.5;
+  color: #243642;
+  font-size: 1.2rem;
+}
+
+/* Ponteiro do balão */
+.speech-bubble::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -10px;
+  transform: translateY(-50%);
+  border-width: 10px;
+  border-style: solid;
+  border-color: transparent white transparent transparent;
+}
+
+.hero-section {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+  margin-top: 50px;
+}
+
+.tip-box {
+  background-color: #52734D;
+  color: white;
+  text-align: center;
+  border-radius: 25px;
+  padding: 15px 20px;
+  font-size: 1.1rem;
+  max-width: 300px;
+  position: absolute;
+  top: 110%; /* Abaixo da imagem */
+  right: 0; /* Posiciona à direita */
+}
+
+/* Contêiner do botão */
+.back-button-container {
+  padding-left: 50px; /* Espaço à esquerda */
+}
+
+/* Botão de retorno */
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px; /* Espaço entre a seta e o texto */
+  font-size: 1.5rem; /* Tamanho menor do texto */
+  font-weight: 600; /* Texto mais grosso */
+  color: black; /* Cor do texto */
+  background-color: #EAE4DD; /* Background do botão */
+  padding: 5px 10px; /* Espaçamento interno */
+  border-radius: 10px; /* Bordas arredondadas */
+  text-decoration: none; /* Remove sublinhado */
+}
+
+.back-button:hover {
+  background-color: #3A6D8C; /* Cor de fundo no hover */
+  color: white; /* Cor do texto no hover */
 }
