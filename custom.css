@@ -135,3 +135,130 @@ a.btn:hover {
   background-color: #3A6D8C; /* Cor de fundo no hover */
   color: white; /* Cor do texto no hover */
 }
+
+.draggable {
+  width: 100px;
+  height: 100px;
+  cursor: grab;
+}
+
+.dropzone {
+  background-color: #F8F9FA;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Contêiner do prato */
+#plate-container {
+  width: 600px;
+  height: auto;
+  position: relative;
+}
+
+/* Imagem do prato */
+#plate {
+  width: 100%;
+  height: auto;
+  z-index: 1;
+}
+
+/* Dropzone sobre o prato */
+#plate-dropzone {
+  width: 85%; /* Ajuste ao tamanho interno do prato */
+  height: 60%; /* Altura ajustada ao prato */
+  top: 20%; /* Centraliza verticalmente sobre o prato */
+  left: 7.5%; /* Centraliza horizontalmente sobre o prato */
+  position: absolute;
+  display: flex;
+  flex-wrap: wrap; /* Permitir múltiplas frutas */
+  justify-content: center;
+  align-items: flex-start;
+  background-color: transparent;
+}
+
+/* Frutas no prato */
+#plate-dropzone img {
+  width: auto; /* Ajustar tamanho das frutas no prato */
+  height: 60px;
+  margin: 5px;
+}
+
+/* Contêiner das frutas em formato de grade */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); /* Ajuste dinâmico */
+    gap: 35px; /* Espaçamento entre as frutas */
+    justify-items: center; /* Centraliza as frutas horizontalmente */
+    align-items: center; /* Centraliza as frutas verticalmente */
+}
+
+/* Frutas */
+.fruit {
+  width: auto;
+  height: 100px;
+  object-fit: contain;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.fruit:hover {
+    transform: scale(1.1); /* Aumenta ligeiramente o tamanho */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Adiciona um efeito de sombra */
+    cursor: grab; /* Indica interatividade */
+}
+
+/* Botão Avançar */
+#verify-btn {
+  padding: 10px 30px;
+  font-size: 1.2rem;
+  background-color: #52734D;
+  color: white;
+}
+
+#verify-btn:hover {
+  background-color: white; /* Tom mais escuro para hover */
+  border: 1px solid #52734D; /* Borda no hover */
+  color: #52734D; /* Cor do texto no hover */
+}
+
+#center-message {
+    display: none; /* Inicialmente oculto */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1050; /* Alta prioridade para sobreposição */
+    background-color: #dc3545; /* Vermelho para erro */
+    color: white;
+    border-radius: 15px;
+    padding: 20px 30px;
+    max-width: 500px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para destaque */
+    text-align: center;
+}
+
+#center-message.success {
+  background-color: #28a745; /* Verde para sucesso */
+}
+
+#center-message p {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+#center-message .btn {
+  padding: 10px 20px;
+  font-size: 1rem;
+}
+
+#next-btn {
+    background-color: #52734D; /* Cor do botão avançar */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+#next-btn:hover {
+    background-color: #3E5C3B; /* Tom mais escuro para hover */
+}
