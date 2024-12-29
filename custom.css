@@ -194,14 +194,14 @@ a.btn:hover {
 }
 
 /* Frutas */
-.fruit {
+.item {
   width: auto;
   height: 100px;
   object-fit: contain;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.fruit:hover {
+.item:hover {
     transform: scale(1.1); /* Aumenta ligeiramente o tamanho */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Adiciona um efeito de sombra */
     cursor: grab; /* Indica interatividade */

@@ -56,19 +56,24 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  const fruits = document.querySelectorAll(".draggable");
+  let currentStage = "fruits";
+  const items = document.querySelectorAll(".draggable");
   const dropzone = document.getElementById("plate-dropzone");
   const verifyBtn = document.getElementById("verify-btn");
-  let fruitCount = 0;
-  const maxFruits = 5;
+  let itemsCount = 0;
+  const maxItems = 5;
   const addedColors = new Set();
 
+  if (document.title.includes("legumes")) {
+    currentStage = "vegetables";
+  }
+
   // Habilitar drag-and-drop para frutas
-  fruits.forEach((fruit) => {
-    fruit.addEventListener("dragstart", (e) => {
-      e.dataTransfer.setData("color", fruit.dataset.color);
-      e.dataTransfer.setData("src", fruit.src);
-      e.dataTransfer.setData("alt", fruit.alt);
+  items.forEach((item) => {
+    item.addEventListener("dragstart", (e) => {
+      e.dataTransfer.setData("color", item.dataset.color);
+      e.dataTransfer.setData("src", item.src);
+      e.dataTransfer.setData("alt", item.alt);
     });
   });
 
@@ -83,21 +88,21 @@ document.addEventListener("DOMContentLoaded", () => {
     const color = e.dataTransfer.getData("color");
 
     // Verificar se já atingiu o limite de frutas
-    if (fruitCount >= maxFruits) {
+    if (itemsCount >= maxItems) {
       showCenterMessage("Só podes adicionar no máximo 5 frutas!", "error");
       return;
     }
 
     // Clonar a fruta e adicionar ao dropzone
-    const fruitClone = document.createElement("img");
-    fruitClone.src = src;
-    fruitClone.alt = alt;
-    fruitClone.dataset.color = color;
-    fruitClone.className = "dropped-fruit";
-    fruitClone.draggable = true;
+    const itemClone = document.createElement("img");
+    itemClone.src = src;
+    itemClone.alt = alt;
+    itemClone.dataset.color = color;
+    itemClone.className = "dropped-item";
+    itemClone.draggable = true;
 
     // Adicionar evento para verificar se foi arrastada para fora
-    fruitClone.addEventListener("dragend", (e) => {
+    itemClone.addEventListener("dragend", (e) => {
       const rect = dropzone.getBoundingClientRect();
       if (
         e.clientX < rect.left ||
@@ -106,15 +111,15 @@ document.addEventListener("DOMContentLoaded", () => {
         e.clientY > rect.bottom
       ) {
         // Remover a fruta do prato
-        dropzone.removeChild(fruitClone);
-        fruitCount--;
+        dropzone.removeChild(itemClone);
+        itemsCount--;
         updateColorsSet();
       }
     });
 
-    dropzone.appendChild(fruitClone);
+    dropzone.appendChild(itemClone);
 
-    fruitCount++;
+    itemsCount++;
     addedColors.add(color);
   });
 
@@ -129,24 +134,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Botão verificar
   verifyBtn.addEventListener("click", () => {
-    if (fruitCount >= 3 && addedColors.size >= 3) {
+    if (itemsCount >= 3 && addedColors.size >= 3) {
       showCenterMessage("Desafio concluído com sucesso!", "success");
-    } else if (fruitCount < 3) {
+    } else if (itemsCount < 3) {
       showCenterMessage("Você precisa adicionar pelo menos 3 frutas ao prato!", "error");
     } else {
       showCenterMessage("Você precisa adicionar pelo menos 3 cores diferentes!", "error");
     }
   });
-
-  // Função para exibir mensagem dependendo do tipo
-  function showCenterMessage(message, type) {
-    console.log(type);
-    if (type === "error") {
-      showCenterMessageError(message);
-    } else {
-      showCenterMessageSuccess(message);
-    }
-  }
 
  // Função genérica para exibir mensagem dependendo do tipo
 function showCenterMessage(message, type) {
@@ -192,9 +187,9 @@ function showCenterMessageSuccess(message) {
   centerMessage.style.backgroundColor = "#52734D"; // Verde para sucesso
   centerMessage.style.display = "block"; // Garante visibilidade
 
-  // Adiciona o botão "Desafio 2" apenas na mensagem de sucesso
-  const nextChallengeButton = document.createElement("button");
-  nextChallengeButton.textContent = "Desafio 2";
+  const nextChallengeButton = document.getElementById("next-btn");
+  nextChallengeButton.textContent = currentStage === "fruits" ? "Avançar" : "Desafio 2";
+
   nextChallengeButton.className = "btn next-challenge-btn";
   nextChallengeButton.style.backgroundColor = "white";
   nextChallengeButton.style.color = "#52734D";
@@ -218,7 +213,7 @@ function showCenterMessageSuccess(message) {
 
   // Evento para redirecionar ao próximo desafio
   nextChallengeButton.addEventListener("click", () => {
-    window.location.href = "desafio2.html";
+    window.location.href = "desafio1-legumes.html";
   });
 
   // Remove o botão "Desafio 2" existente antes de criar um novo
@@ -244,7 +239,7 @@ function showCenterMessageSuccess(message) {
   function resetGame() {
     const dropzone = document.getElementById("plate-dropzone");
     dropzone.innerHTML = ""; // Remove todas as frutas do prato
-    fruitCount = 0; // Reseta o contador de frutas
+    itemsCount = 0; // Reseta o contador de frutas
     addedColors.clear(); // Limpa as cores adicionadas
   }
 });

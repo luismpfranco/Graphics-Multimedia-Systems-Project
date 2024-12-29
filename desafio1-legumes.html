@@ -19,7 +19,7 @@
 
     <!-- Botão de retorno -->
     <div class="back-button-container py-4">
-        <a href="mission.html" class="back-button">
+        <a href="desafio1-frutas.html" class="back-button">
             <span class="fs-3">&larr;</span> <!-- Seta para a esquerda -->
             <span class="ms-2">Voltar</span>
         </a>
@@ -29,16 +29,17 @@
 
         <!-- Caixa de mensagem -->
         <div class="welcome-box text-white rounded-pill px-5 py-3 mx-auto mb-4" style="max-width: 1000px;">
-            <p class="fs-4 mb-0">Desafio 1: Montar um prato colorido com pelo menos três cores diferentes de frutas.</p>
-            <p class="fs-4 mb-0">Para passares a este desafio tens de arrastar uma fruta de cada vez para o prato!</p>
-            <p class="fs-4 mb-0">Só podes adicionar, no máximo, 5 frutas no prato.</p>
-            <p class="fs-4 mb-0">Também podes arrastares frutas para fora do prato. Boa sorte!</p>
+            <p class="fs-4 mb-0">Desafio 1: Montar um prato colorido com pelo menos três cores diferentes de legumes.
+            </p>
+            <p class="fs-4 mb-0">Para passares a este desafio tens de arrastar um legume de cada vez para o prato!</p>
+            <p class="fs-4 mb-0">Só podes adicionar, no máximo, 5 legumes no prato.</p>
+            <p class="fs-4 mb-0">Também podes arrastares legumes para fora do prato. Boa sorte!</p>
         </div>
 
         <!-- Conteúdo Principal -->
         <div class="row align-items-center">
             <!-- Prato no lado esquerdo -->
-            <div class="col-md-6 text-center" style="margin-top: 450px;">
+            <div class="col-md-6 text-center" style="margin-top: 400px;">
                 <div id="plate-container" class="position-relative mx-auto">
                     <img src="img/prato.png" alt="Prato" id="plate" class="img-fluid">
                     <div id="plate-dropzone" class="dropzone position-absolute"></div>
@@ -47,21 +48,25 @@
 
             <!-- Frutas no lado direito -->
             <div class="col-md-6 text-start">
-                <div class="fruit-container grid-container">
+                <div class="item-container grid-container">
                     <!-- Frutas em formato de lista vertical -->
-                    <img src="img/D1/laranja.png" alt="Laranja" class="fruit draggable mr-5" draggable="true"
+                    <img src="img/D1/abobora.png" alt="Abóbora" class="item draggable mr-5" draggable="true"
                         data-color="laranja">
-                    <img src="img/d1/kiwi.png" alt="Kiwi" class="fruit draggable mb-3 ml-5" draggable="true"
+                    <img src="img/d1/alface.png" alt="Alface" class="item draggable mb-3 ml-5" draggable="true"
                         data-color="verde">
-                    <img src="img/d1/ananas.png" alt="Abacaxi" class="fruit draggable mb-3" draggable="true"
+                    <img src="img/d1/brocolos.png" alt="Brócolos" class="item draggable mb-3" draggable="true"
+                        data-color="verde">
+                    <img src="img/D1/cenoura.png" alt="Cenoura" class="item draggable mb-3" draggable="true"
+                        data-color="laranja">
+                    <img src="img/D1/couve-roxa.png" alt="Couve-Roxa" class="item draggable mb-3" draggable="true"
+                        data-color="roxo">
+                    <img src="img/D1/milho.png" alt="Milho" class="item draggable mb-3" draggable="true"
                         data-color="amarelo">
-                    <img src="img/D1/banana.png" alt="Banana" class="fruit draggable mb-3" draggable="true"
-                        data-color="amarelo">
-                    <img src="img/D1/manga.png" alt="Manga" class="fruit draggable mb-3" draggable="true"
-                        data-color="amarelo">
-                    <img src="img/D1/melancia.png" alt="Melancia" class="fruit draggable mb-3" draggable="true"
-                        data-color="vermelho">
-                    <img src="img/D1/morangos.png" alt="Morangos" class="fruit draggable mb-3" draggable="true"
+                    <img src="img/D1/pimento-amarelo.png" alt="Pimento-Amarelo" class="item draggable mb-3"
+                        draggable="true" data-color="amarelo">
+                    <img src="img/D1/pimento-vermelho.png" alt="Pimento-Vermelho" class="item draggable mb-3"
+                        draggable="true" data-color="vermelho">
+                    <img src="img/D1/tomate.png" alt="Tomate" class="item draggable mb-3" draggable="true"
                         data-color="vermelho">
                 </div>
             </div>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio 2</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="custom.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <header class="text-center text-white py-3">
+        <h1 class="h3 m-0">Aventura dos Super Alimentos</h1>
+    </header>
+
+    <!-- Botão de retorno -->
+    <div class="back-button-container py-4">
+        <a href="desafio1-legumes.html" class="back-button">
+            <span class="fs-3">&larr;</span> <!-- Seta para a esquerda -->
+            <span class="ms-2">Voltar</span>
+        </a>
+    </div>
+
+    <div class="container text-center">
+
+        <!-- Caixa de mensagem -->
+        <div class="welcome-box text-white rounded-pill px-5 py-3 mx-auto mb-4" style="max-width: 1000px;">
+            <p class="fs-4 mb-0">Desafio 2: Cria um lanche saudável com frutas e grãos, põe pelo menos 3 alimentos na
+                mesa.</p>
+        </div>
+
+        <!-- Conteúdo Principal -->
+        <div class="row align-items-center">
+            <!-- Mesa no lado esquerdo -->
+            <div class="col-md-6 text-center">
+                <div id="plate-container" class="position-relative mx-auto">
+                    <img src="img/mesa.jpg" alt="Mesa" id="plate" class="img-fluid">
+                    <div id="plate-dropzone" class="dropzone position-absolute"></div>
+                </div>
+            </div>
+
+            <!-- Alimentos no lado direito -->
+            <div class="col-md-6 text-start">
+                <div class="food-container grid-container">
+                    <!-- Alimentos -->
+                    <img src="img/D2/nozes.jpg" alt="Nozes" class="item draggable mb-3" draggable="true"
+                        data-color="castanho">
+                    <img src="img/D2/maça.jpg" alt="Maçã" class="item draggable mb-3" draggable="true"
+                        data-color="vermelho">
+                    <img src="img/D2/iogurte.jpg" alt="Iogurte" class="item draggable mb-3" draggable="true"
+                        data-color="branco">
+                    <img src="img/D2/pao-forma-integral.jpg" alt="Pão de forma integral" class="item draggable mb-3"
+                        draggable="true" data-color="castanho">
+                    <img src="img/D2/framboesa.jpg" alt="Framboesa" class="item draggable mb-3" draggable="true"
+                        data-color="vermelho">
+                    <img src="img/D2/pessego.jpg" alt="Pêssego" class="item draggable mb-3" draggable="true"
+                        data-color="amarelo">
+                    <img src="img/D2/aveia.jpg" alt="Aveia" class="item draggable mb-3" draggable="true"
+                        data-color="bege">
+                    <img src="img/D2/rodela-banana.jpg" alt="Banana" class="item draggable mb-3" draggable="true"
+                        data-color="amarelo">
+                    <img src="img/D2/barra-cereais.jpg" alt="Barra de cereal" class="item draggable mb-3"
+                        draggable="true" data-color="castanho">
+                    <img src="img/D2/uvas.jpg" alt="Uvas" class="item draggable mb-3" draggable="true"
+                        data-color="roxo">
+                </div>
+            </div>
+
+            <!-- Mensagem centralizada para limite de alimentos -->
+            <div id="center-message" class="text-white">
+                <p id="center-message-text" class="mb-3"></p>
+                <div class="d-flex justify-content-center gap-3">
+                    <button id="restart-btn" class="btn btn-danger">Reiniciar</button>
+                    <button id="correct-btn" class="btn btn-secondary">Corrigir</button>
+                    <a href="desafio3.html" id="next-btn" class="btn btn-success d-none">Avançar</a>
+                </div>
+            </div>
+        </div>
+        <!-- Botão Avançar -->
+        <div class="row mt-4" style="margin-bottom: 5rem;">
+            <div class="col text-center">
+                <button id="verify-btn" class="btn btn-lg rounded-pill">Avançar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
