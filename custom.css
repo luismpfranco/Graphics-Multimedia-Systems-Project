@@ -64,7 +64,6 @@ a.btn:hover {
   color: #2E556F; /* Cor ao passar o mouse (hover) */
 }
 
-
 .speech-bubble {
   background-color: white;
   border: 2px solid #3A6D8C;
@@ -217,7 +216,7 @@ a.btn:hover {
 
 #verify-btn:hover {
   background-color: white; /* Tom mais escuro para hover */
-  border: 1px solid #52734D; /* Borda no hover */
+  border: 2px solid #52734D; /* Borda no hover */
   color: #52734D; /* Cor do texto no hover */
 }
 
@@ -261,4 +260,70 @@ a.btn:hover {
 }
 #next-btn:hover {
     background-color: #3E5C3B; /* Tom mais escuro para hover */
+}
+
+.message-box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    border-radius: 25px;
+    padding: 20px 40px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    z-index: 1000;
+}
+
+.message-box p {
+    font-size: 18px;
+    color: #333;
+}
+
+.green-btn {
+    background-color: #52734D;
+    color: white;
+    border: 2px solid #52734D;
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.green-btn:hover {
+    background-color: white !important;
+    color: #52734D !important;
+    border: 2px solid #52734D;
+}
+
+.game-btn-success {
+    background-color: white;
+    color: #52734D;
+    padding: 10px 20px;
+    border-radius: 25px;
+    border: 2px solid white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.game-btn-success:hover {
+    background-color: #52734D;
+    color: white;
+    border: 2px solid white;
+}
+
+.game-btn-error {
+    background-color: white;
+    color: #dc3545;
+    padding: 10px 20px;
+    border-radius: 25px;
+    border: 2px solid white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.game-btn-error:hover {
+    background-color: #dc3545;
+    color: white;
+    border: 2px solid white;
 }

@@ -63,23 +63,31 @@ document.addEventListener("DOMContentLoaded", () => {
   let itemsCount = 0;
   const maxItems = 5;
   const addedColors = new Set();
+  let draggingEnabled = true;
 
-  if (document.title.includes("legumes")) {
+  if (document.title.includes("Legumes")) {
     currentStage = "vegetables";
+  }
+  else if (document.title.includes("Desafio 2")) {
+    currentStage = "second";
   }
 
   // Habilitar drag-and-drop para frutas
   items.forEach((item) => {
     item.addEventListener("dragstart", (e) => {
+      if (!draggingEnabled) return;
       e.dataTransfer.setData("color", item.dataset.color);
       e.dataTransfer.setData("src", item.src);
       e.dataTransfer.setData("alt", item.alt);
     });
   });
 
-  dropzone.addEventListener("dragover", (e) => e.preventDefault());
+  dropzone.addEventListener("dragover", (e) => {
+    if (draggingEnabled) e.preventDefault();
+  });
 
   dropzone.addEventListener("drop", (e) => {
+    if (!draggingEnabled) return;
     e.preventDefault();
 
     // Obter os dados da fruta arrastada
@@ -87,9 +95,21 @@ document.addEventListener("DOMContentLoaded", () => {
     const alt = e.dataTransfer.getData("alt");
     const color = e.dataTransfer.getData("color");
 
+    if (!src || !alt || !e.target.classList.contains("dropzone")) {
+        return; // Ignora itens inválidos (ex.: mesa ou outros elementos)
+    }
+
     // Verificar se já atingiu o limite de frutas
     if (itemsCount >= maxItems) {
-      showCenterMessage("Só podes adicionar no máximo 5 frutas!", "error");
+      if(currentStage === "fruits") {
+        showCenterMessage("Só podes adicionar no máximo 5 frutas!", "error");
+      }
+      else if(currentStage === "vegetables") {
+        showCenterMessage("Só podes adicionar no máximo 5 legumes!", "error");
+      }
+      else if(currentStage === "second") {
+        showCenterMessage("Só podes adicionar no máximo 5 alimentos!", "error");
+      }
       return;
     }
 
@@ -137,14 +157,28 @@ document.addEventListener("DOMContentLoaded", () => {
     if (itemsCount >= 3 && addedColors.size >= 3) {
       showCenterMessage("Desafio concluído com sucesso!", "success");
     } else if (itemsCount < 3) {
-      showCenterMessage("Você precisa adicionar pelo menos 3 frutas ao prato!", "error");
+      if(currentStage === "fruits") {
+        showCenterMessage("Você precisa adicionar pelo menos 3 frutas ao prato!", "error");
+      }
+      else if(currentStage === "vegetables") {
+        showCenterMessage("Você precisa adicionar pelo menos 3 legumes ao prato!", "error");
+      }
+      else if(currentStage === "second") {
+        showCenterMessage("Você precisa adicionar pelo menos 3 alimentos ao prato!", "error");
+      }
     } else {
-      showCenterMessage("Você precisa adicionar pelo menos 3 cores diferentes!", "error");
+      if(currentStage === "fruits" || currentStage === "vegetables") {
+        showCenterMessage("Você precisa adicionar pelo menos 3 cores diferentes!", "error");
+      }
+      else if(currentStage === "second") {
+        showCenterMessage("Desafio concluído com sucesso!", "success");
+      }
     }
   });
 
  // Função genérica para exibir mensagem dependendo do tipo
 function showCenterMessage(message, type) {
+  disableDragging();
   if (type === "error") {
     showCenterMessageError(message);
   } else if (type === "success") {
@@ -161,19 +195,15 @@ function showCenterMessageError(message) {
   centerMessage.style.backgroundColor = "#dc3545"; // Vermelho para erro
   centerMessage.style.display = "block"; // Garante visibilidade
 
-  // Remove o botão "Desafio 2" se existir
-  const existingButton = centerMessage.querySelector(".next-challenge-btn");
-  if (existingButton) {
-    existingButton.remove();
-  }
-
   // Reiniciar e Corrigir eventos
   document.getElementById("restart-btn").addEventListener("click", () => {
     resetGame();
+    enableDragging();
     centerMessage.style.display = "none"; // Ocultar a mensagem
   });
 
   document.getElementById("correct-btn").addEventListener("click", () => {
+    enableDragging();
     centerMessage.style.display = "none"; // Apenas fecha a mensagem
   });
 }
@@ -188,7 +218,15 @@ function showCenterMessageSuccess(message) {
   centerMessage.style.display = "block"; // Garante visibilidade
 
   const nextChallengeButton = document.getElementById("next-btn");
-  nextChallengeButton.textContent = currentStage === "fruits" ? "Avançar" : "Desafio 2";
+  if(currentStage === "fruits") {
+    nextChallengeButton.textContent = "Avançar";
+  }
+  else if(currentStage === "vegetables") {
+    nextChallengeButton.textContent = "Desafio 2";
+  }
+  else if(currentStage === "second") {
+    nextChallengeButton.textContent = "Desafio 3";
+  }
 
   nextChallengeButton.className = "btn next-challenge-btn";
   nextChallengeButton.style.backgroundColor = "white";
@@ -213,6 +251,7 @@ function showCenterMessageSuccess(message) {
 
   // Evento para redirecionar ao próximo desafio
   nextChallengeButton.addEventListener("click", () => {
+    enableDragging();
     window.location.href = "desafio1-legumes.html";
   });
 
@@ -228,13 +267,39 @@ function showCenterMessageSuccess(message) {
   // Reiniciar e Corrigir eventos
   document.getElementById("restart-btn").addEventListener("click", () => {
     resetGame();
+    enableDragging();
     centerMessage.style.display = "none"; // Ocultar a mensagem
   });
 
   document.getElementById("correct-btn").addEventListener("click", () => {
+    enableDragging();
     centerMessage.style.display = "none"; // Apenas fecha a mensagem
   });
 }
+
+  function disableDragging() {
+    draggingEnabled = false;
+    items.forEach((item) => {
+      item.setAttribute("draggable", false);
+    });
+
+    const droppedItems = dropzone.querySelectorAll(".dropped-item");
+    droppedItems.forEach((item) => {
+      item.setAttribute("draggable", "false");
+    });
+  }
+
+  function enableDragging() {
+    draggingEnabled = true;
+    items.forEach((item) => {
+      item.setAttribute("draggable", true);
+    });
+
+    const droppedItems = dropzone.querySelectorAll(".dropped-item");
+    droppedItems.forEach((item) => {
+      item.setAttribute("draggable", "true"); // Reativa funcionalidade de arrastar do prato
+    });
+  }
 
   function resetGame() {
     const dropzone = document.getElementById("plate-dropzone");
