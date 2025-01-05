@@ -4,8 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("score", "0");
   }
 
-  const correctOption = document.getElementById("correct-option");
-  const wrongOption = document.getElementById("wrong-option");
+  const correctOptions = document.querySelectorAll(".correct-option");
+  const wrongOptions = document.querySelectorAll(".wrong-option");
   const resultMessage = document.getElementById("feedback-message");
   const resultText = document.getElementById("feedback-text");
   const nextBtn = document.getElementById("game-btn");
@@ -15,34 +15,34 @@ document.addEventListener("DOMContentLoaded", () => {
   const errorSound = document.getElementById("error-sound");
 
   let optionsLocked = false; // Variável para bloquear cliques adicionais após a escolha
-  let backDisabled = false; // Variável para bloquear o botão voltar após a escolha
+
+  // Função para bloquear todas as opções
+  function lockOptions() {
+    optionsLocked = true;
+    correctOptions.forEach((option) => (option.style.pointerEvents = "none"));
+    wrongOptions.forEach((option) => (option.style.pointerEvents = "none"));
+  }
 
   // Evento para a opção correta
-  correctOption.addEventListener("click", () => {
-    if (optionsLocked) return; // Bloqueia cliques adicionais
-    optionsLocked = true;
-    backDisabled = true; // Desativa o botão voltar
-    updateScore(10); // Adiciona 10 pontos
-    successSound.play();
-    showMessage("Parabéns! Acertaste! Ganhaste 10 pontos!", true);
+  correctOptions.forEach((option) => {
+    option.addEventListener("click", () => {
+      if (optionsLocked) return; // Bloqueia cliques adicionais
+      lockOptions();
+      updateScore(10); // Adiciona 10 pontos
+      successSound.play();
+      showMessage("Parabéns! Acertaste! Ganhaste 10 pontos!", true);
+    });
   });
 
   // Evento para a opção errada
-  wrongOption.addEventListener("click", () => {
-    if (optionsLocked) return; // Bloqueia cliques adicionais
-    optionsLocked = true;
-    backDisabled = true; // Desativa o botão voltar
-    updateScore(-10); // Remove 10 pontos
-    errorSound.play();
-    showMessage("Oh não! Escolheste a entrada menos saudável. Esforça-te mais no próximo prato. Perdeste 10 pontos!", false);
-  });
-
-  // Bloquear o botão voltar se necessário
-  backButton.addEventListener("click", (e) => {
-    if (backDisabled) {
-      e.preventDefault(); // Impede a navegação ao clicar no botão voltar
-      alert("Não podes voltar após escolher uma opção!"); // Mensagem opcional
-    }
+  wrongOptions.forEach((option) => {
+    option.addEventListener("click", () => {
+      if (optionsLocked) return; // Bloqueia cliques adicionais
+      lockOptions();
+      updateScore(-10); // Remove 10 pontos
+      errorSound.play();
+      showMessage("Oh não! Escolheste a entrada menos saudável. Esforça-te mais no próximo prato. Perdeste 10 pontos!", false);
+    });
   });
 
   // Atualizar pontuação no localStorage
@@ -74,4 +74,11 @@ document.addEventListener("DOMContentLoaded", () => {
         window.location.href = "prato.html"; // Redirecionar para o próximo prato
     });
   }
+
+  backButton.addEventListener("click", (e) => {
+        if (optionClicked) {
+            e.preventDefault();
+            alert("Não podes voltar depois de escolheres uma opção.");
+        }
+    });
 });

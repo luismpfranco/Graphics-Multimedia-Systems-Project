@@ -4,8 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem("score", "0");
     }
 
-    const correctOption = document.getElementById("correct-option");
-    const wrongOption = document.getElementById("wrong-option");
+    const correctOptions = document.querySelectorAll(".correct-option");
+    const wrongOptions = document.querySelectorAll(".wrong-option");
     const resultMessage = document.getElementById("feedback-message");
     const resultText = document.getElementById("feedback-text");
     const nextBtn = document.getElementById("game-btn");
@@ -16,22 +16,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let optionClicked = false; // Para garantir que só uma opção pode ser clicada
 
+    // Função para bloquear todas as opções
+    function lockOptions() {
+        optionsLocked = true;
+        correctOptions.forEach((option) => (option.style.pointerEvents = "none"));
+        wrongOptions.forEach((option) => (option.style.pointerEvents = "none"));
+    }
+
     // Evento para a opção correta
-    correctOption.addEventListener("click", () => {
-        if (optionClicked) return;
-        optionClicked = true; // Bloqueia novas interações
-        updateScore(10); // Adiciona 10 pontos
-        successSound.play();
-        showMessage("Parabéns! Acertaste! Ganhaste 10 pontos!", true);
+    correctOptions.forEach((option) => {
+        option.addEventListener("click", () => {
+            if (optionClicked) return;
+            lockOptions(); // Bloqueia novas interações
+            updateScore(10); // Adiciona 10 pontos
+            successSound.play();
+            showMessage("Parabéns! Acertaste! Ganhaste 10 pontos!", true);
+        });
     });
 
     // Evento para a opção errada
-    wrongOption.addEventListener("click", () => {
-        if (optionClicked) return;
-        optionClicked = true; // Bloqueia novas interações
-        updateScore(-10); // Remove 10 pontos
-        errorSound.play();
-        showMessage("Oh não! Escolheste o prato menos saudável. Esforça-te mais no último prato. Perdeste 10 pontos!", false);
+    wrongOptions.forEach((option) => {
+        option.addEventListener("click", () => {
+            if (optionClicked) return;
+            lockOptions(); // Bloqueia novas interações
+            updateScore(-10); // Remove 10 pontos
+            errorSound.play();
+            showMessage("Oh não! Escolheste o prato menos saudável. Esforça-te mais no último prato. Perdeste 10 pontos!", false);
+        });
     });
 
     // Atualizar pontuação no localStorage
@@ -63,8 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
             window.location.href = "sobremesas.html"; // Redirecionar para o próximo prato
         });
     }
-
-    // Desabilitar botão voltar após escolha
+    
     backButton.addEventListener("click", (e) => {
         if (optionClicked) {
             e.preventDefault();
