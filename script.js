@@ -65,6 +65,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const addedColors = new Set();
   let draggingEnabled = true;
 
+  const successSound = document.getElementById("success-sound");
+  const errorSound = document.getElementById("error-sound");
+
   if (document.title.includes("Legumes")) {
     currentStage = "vegetables";
   }
@@ -181,8 +184,10 @@ function showCenterMessage(message, type) {
   disableDragging();
   if (type === "error") {
     showCenterMessageError(message);
+    errorSound.play();
   } else if (type === "success") {
     showCenterMessageSuccess(message);
+    successSound.play();
   }
 }
 

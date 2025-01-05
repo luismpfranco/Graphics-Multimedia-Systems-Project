@@ -11,6 +11,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const nextBtn = document.getElementById("game-btn");
     const backButton = document.getElementById("back-button");
 
+    const successSound = document.getElementById("success-sound");
+    const errorSound = document.getElementById("error-sound");
+
     let optionClicked = false; // Para garantir que só uma opção pode ser clicada
 
     // Evento para a opção correta
@@ -18,6 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (optionClicked) return;
         optionClicked = true; // Bloqueia novas interações
         updateScore(10); // Adiciona 10 pontos
+        successSound.play();
         showMessage("Parabéns! Acertaste! Ganhaste 10 pontos!", true);
     });
 
@@ -26,6 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (optionClicked) return;
         optionClicked = true; // Bloqueia novas interações
         updateScore(-10); // Remove 10 pontos
+        errorSound.play();
         showMessage("Oh não! Escolheste o prato menos saudável. Esforça-te mais no último prato. Perdeste 10 pontos!", false);
     });
 

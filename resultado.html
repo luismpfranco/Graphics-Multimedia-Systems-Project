@@ -35,12 +35,20 @@
         </div>
     </div>
 
+    <audio id="success-sound" src="audio/success.mp3" preload="auto"></audio>
+    <audio id="error-sound" src="audio/error.mp3" preload="auto"></audio>
+
     <script>
         document.addEventListener("DOMContentLoaded", () => {
+
+            const successSound = document.getElementById("success-sound");
+            const errorSound = document.getElementById("error-sound");
+
             const finalMessage = document.getElementById("final-message");
             const score = parseInt(localStorage.getItem("score"), 10); // Obter pontuação do localStorage
 
             if (score >= 30) {
+                successSound.play(); // Tocar som de sucesso
                 // Mensagem para pontuação máxima
                 finalMessage.innerHTML = `
                     <p class="fs-4 mb-0">Parabéns! Acabaste de criar uma refeição saudável!</p>
@@ -49,6 +57,7 @@
                 `;
                 finalMessage.style.backgroundColor = "#52734D"; // Fundo verde
             } else {
+                errorSound.play(); // Tocar som de erro
                 // Mensagem para pontuação negativa
                 finalMessage.innerHTML = `
                     <p class="fs-4 mb-0">Parabéns pelo esforço!</p>

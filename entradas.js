@@ -11,6 +11,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const nextBtn = document.getElementById("game-btn");
   const backButton = document.querySelector(".back-button"); // Seleciona o botão voltar
 
+  const successSound = document.getElementById("success-sound");
+  const errorSound = document.getElementById("error-sound");
+
   let optionsLocked = false; // Variável para bloquear cliques adicionais após a escolha
   let backDisabled = false; // Variável para bloquear o botão voltar após a escolha
 
@@ -20,6 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
     optionsLocked = true;
     backDisabled = true; // Desativa o botão voltar
     updateScore(10); // Adiciona 10 pontos
+    successSound.play();
     showMessage("Parabéns! Acertaste! Ganhaste 10 pontos!", true);
   });
 
@@ -29,6 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
     optionsLocked = true;
     backDisabled = true; // Desativa o botão voltar
     updateScore(-10); // Remove 10 pontos
+    errorSound.play();
     showMessage("Oh não! Escolheste a entrada menos saudável. Esforça-te mais no próximo prato. Perdeste 10 pontos!", false);
   });
 

@@ -10,15 +10,20 @@ document.addEventListener("DOMContentLoaded", () => {
     const resultText = document.getElementById("feedback-text");
     const nextBtn = document.getElementById("game-btn");
 
+    const successSound = document.getElementById("success-sound");
+    const errorSound = document.getElementById("error-sound");
+
     // Evento para a opção correta
     correctOption.addEventListener("click", () => {
         updateScore(10); // Adiciona 10 pontos
+        successSound.play();
         showMessage("Parabéns! Acertaste! Ganhaste 10 pontos!", true);
     });
 
     // Evento para a opção errada
     wrongOption.addEventListener("click", () => {
         updateScore(-10); // Remove 10 pontos
+        errorSound.play();
         showMessage("Oh não! Escolheste a sobremesa menos saudável. Perdeste 10 pontos.", false);
     });
 
