@@ -70,11 +70,11 @@ a.btn:hover {
   border-radius: 15px;
   padding: 15px;
   position: relative;
-  max-width: 300px;
+  max-width: 400px;
   text-align: left;
-  line-height: 1.5;
+  line-height: 2.5;
   color: #243642;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
 }
 
 /* Ponteiro do balão */
@@ -104,8 +104,8 @@ a.btn:hover {
   text-align: center;
   border-radius: 25px;
   padding: 15px 20px;
-  font-size: 1.1rem;
-  max-width: 300px;
+  font-size: 1.3rem;
+  max-width: 350px;
   position: absolute;
   top: 110%; /* Abaixo da imagem */
   right: 0; /* Posiciona à direita */

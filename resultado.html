@@ -17,7 +17,7 @@
 
     <!-- Instruções -->
     <div class="container text-center mt-5">
-        <div class="welcome-box text-white rounded-pill px-5 py-3 mx-auto mb-4" id="final-message"
+        <div class="welcome-box text-white rounded-pill px-5 py-4 mx-auto mb-4" id="final-message"
             style="max-width: 800px;">
             <!-- Mensagem será preenchida dinamicamente -->
         </div>
@@ -51,19 +51,14 @@
                 successSound.play(); // Tocar som de sucesso
                 // Mensagem para pontuação máxima
                 finalMessage.innerHTML = `
-                    <p class="fs-4 mb-0">Parabéns! Acabaste de criar uma refeição saudável!</p>
-                    <p class="fs-4 mb-0">Ganhaste no total ${score} pontos!</p>
-                    <p class="fs-4 mb-0">És um herói da alimentação saudável! Partilha as tuas descobertas com os teus amigos e familiares.</p>
+                    <p class="mb-0" style="font-size: 1.5rem;">Parabéns! Acabaste de criar uma refeição saudável! Ganhaste no total ${score} pontos! És um herói da alimentação saudável! Partilha as tuas descobertas com os teus amigos e familiares.</p>
                 `;
                 finalMessage.style.backgroundColor = "#52734D"; // Fundo verde
             } else {
                 errorSound.play(); // Tocar som de erro
                 // Mensagem para pontuação negativa
                 finalMessage.innerHTML = `
-                    <p class="fs-4 mb-0">Parabéns pelo esforço!</p>
-                    <p class="fs-4 mb-0">Embora não tenhas criado a tua refeição mais saudável, tentaste e deste o teu melhor!</p>
-                    <p class="fs-4 mb-0">Tiveste ${score} pontos. Esperemos que tenhas gostado do jogo!</p>
-                    <p class="fs-4 mb-0">Partilha as tuas descobertas com os teus amigos e familiares.</p>
+                    <p class="mb-0" style="font-size: 1.5rem;">Parabéns pelo esforço! Embora não tenhas criado a tua refeição mais saudável, tentaste e deste o teu melhor! Tiveste ${score} pontos. Esperemos que tenhas gostado do jogo! Partilha as tuas descobertas com os teus amigos e familiares.</p>
                 `;
                 finalMessage.style.backgroundColor = "#dc3545"; // Fundo vermelho
             }
