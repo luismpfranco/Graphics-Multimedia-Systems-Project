@@ -7,6 +7,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const restartBtn = document.getElementById("restart-btn");
     const nextBtn = document.getElementById("next");
 
+    const successSound = document.getElementById("success-sound");
+    const errorSound = document.getElementById("error-sound");
+
     let totalWater = 0; // Quantidade de água no copo
     const maxWater = 100; // Limite máximo de água no copo
 
@@ -27,9 +30,11 @@ document.addEventListener("DOMContentLoaded", () => {
             waterLevel.style.height = `${(totalWater / maxWater) * 100}%`;
 
             if (totalWater === maxWater) {
+                successSound.play();
                 showFeedback("Parabéns! Conseguiste encher o copo de forma divertida!", true);
             }
         } else {
+            errorSound.play();
             showFeedback("Esta garrafa tem mais água do que o suficiente para encher o copo!", false);
         }
     });
